@@ -1,0 +1,9 @@
+CREATE TABLE [dbo].[Ospiti]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [Nome] VARCHAR(50) NOT NULL, 
+    [Cognome] VARCHAR(50) NOT NULL, 
+    [Data_di_nascita] DATE NOT NULL, 
+    [Tipo_documento] VARCHAR(50) NOT NULL, 
+    [Numero_documento] BIGINT NOT NULL
+)
