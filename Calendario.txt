@@ -1,0 +1,5 @@
+CREATE TABLE [dbo].[Calendario]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [data] DATE NOT NULL
+)
