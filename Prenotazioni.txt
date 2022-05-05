@@ -1,0 +1,12 @@
+CREATE TABLE [dbo].[Prenotazioni]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [Stanza_id] BIGINT NOT NULL, 
+    [configurazione_id] BIGINT NOT NULL, 
+    [Ospiti_id] BIGINT NOT NULL, 
+    [Calendario_id] BIGINT NOT NULL, 
+    CONSTRAINT [stanza_id] FOREIGN KEY ([Stanza_id]) REFERENCES [Prenotazioni]([Stanza_id]), 
+    CONSTRAINT [configurazione_id] FOREIGN KEY ([configurazione_id]) REFERENCES [Prenotazioni]([configurazione_id]), 
+    CONSTRAINT [Ospiti_id] FOREIGN KEY ([Ospiti_id]) REFERENCES [Prenotazioni]([Ospiti_id]), 
+    CONSTRAINT [Calendario_id] FOREIGN KEY ([Calendario_id]) REFERENCES [Prenotazioni]([Calendario_id])
+)
