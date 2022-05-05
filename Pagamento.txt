@@ -1,0 +1,8 @@
+CREATE TABLE [dbo].[Pagamento]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [Prenotazioni_id] BIGINT NOT NULL, 
+    [Stato_pagamento] VARCHAR(15) NOT NULL, 
+    [Prezzo] INT NULL, 
+    CONSTRAINT [Prenotazioni_id] FOREIGN KEY ([Prenotazioni_id]) REFERENCES [Pagamento]([Prenotazioni_id])
+)
