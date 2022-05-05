@@ -1,0 +1,7 @@
+CREATE TABLE [dbo].[Stanze]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [N_stanza] INT NOT NULL, 
+    [piano] INT NOT NULL, 
+    [N_letti] INT NOT NULL
+)
