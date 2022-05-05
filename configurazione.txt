@@ -1,0 +1,7 @@
+CREATE TABLE [dbo].[Configurazione]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [titolo] VARCHAR(50) NOT NULL, 
+    [Descrizione] VARCHAR(100) NULL, 
+    [Tipo_configurazione] VARCHAR(50) NOT NULL
+)
