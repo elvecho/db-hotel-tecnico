@@ -1,0 +1,61 @@
+1. Seleziona tutti gli ospiti che sono stati identificati con la carta di identità
+SELECT *
+FROM ospiti
+where document_type = 'CI'
+
+2. Seleziona tutti gli ospiti che sono nati dopo il 1988
+SELECT *
+FROM ospiti
+WHERE year (date_of_birth) > 1988
+
+3. Seleziona tutti gli ospiti il cui nome inizia con la D
+SELECT *
+FROM ospiti
+WHERE name LIKE 'D%'
+
+4. Calcola il totale incassato degli ordini accepted (res : 4164.00)
+SELECT SUM (price) AS Totale_incassato
+FROM pagamenti
+WHERE status = 'accepted'
+
+5. Qual è il prezzo massimo pagato? (res : 869.00)
+SELECT MAX(price) AS massimo_pagato
+FROM pagamenti
+WHERE status = 'accepted'
+
+6. Quanti posti letto ha l’hotel in totale?
+SELECT COUNT(room_number) AS numero_stanze
+FROM stanze
+
+7. Somma i prezzi dei pagamenti raggruppandoli per status
+SELECT SUM(price) AS somma_pagamenti, status
+FROM pagamenti
+GROUP BY status
+
+8. Conta quante volte è stata prenotata ogni stanza
+SELECT stanza_id, COUNT(stanza_id) AS numero_di_volte_che_è_stata_prenotata
+FROM prenotazioni
+GROUP BY stanza_id
+
+9. Stampare tutti gli ospiti per ogni prenotazione
+SELECT name, lastname, prenotazioni_has_ospiti.prenotazione_id
+FROM ospiti
+JOIN prenotazioni_has_ospiti on ospite_id = ospiti.id
+
+10. Fai la somma di tutti i prezzi delle prenotazioni per le stanze del primo piano
+SELECT SUM(price) AS somma_prenotazioni_stanza_primo_piano
+FROM pagamenti
+JOIN prenotazioni ON prenotazione_id = prenotazioni.id
+JOIN stanze ON stanza_id = stanze.id
+WHERE floor = '1'
+
+11. Le stanze sono state tutte prenotate almeno una volta? (Visualizzare le stanze
+non ancora prenotate) - BONUS
+SELECT *	
+FROM prenotazioni
+RIGHT JOIN stanze ON stanza_id = stanze.id
+WHERE stanze.id = 2 // NULL
+
+
+
+
