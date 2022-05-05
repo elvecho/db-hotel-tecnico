@@ -1,0 +1,48 @@
+CREATE TABLE [dbo].[Calendario]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [data] DATE NOT NULL
+)
+CREATE TABLE [dbo].[Ospiti]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [Nome] VARCHAR(50) NOT NULL, 
+    [Cognome] VARCHAR(50) NOT NULL, 
+    [Data_di_nascita] DATE NOT NULL, 
+    [Tipo_documento] VARCHAR(50) NOT NULL, 
+    [Numero_documento] BIGINT NOT NULL
+)
+CREATE TABLE [dbo].[Pagamento]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [Prenotazioni_id] BIGINT NOT NULL, 
+    [Stato_pagamento] VARCHAR(15) NOT NULL, 
+    [Prezzo] INT NULL, 
+    CONSTRAINT [Prenotazioni_id] FOREIGN KEY ([Prenotazioni_id]) REFERENCES [Pagamento]([Prenotazioni_id])
+)
+CREATE TABLE [dbo].[Prenotazioni]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [Stanza_id] BIGINT NOT NULL, 
+    [configurazione_id] BIGINT NOT NULL, 
+    [Ospiti_id] BIGINT NOT NULL, 
+    [Calendario_id] BIGINT NOT NULL, 
+    CONSTRAINT [stanza_id] FOREIGN KEY ([Stanza_id]) REFERENCES [Prenotazioni]([Stanza_id]), 
+    CONSTRAINT [configurazione_id] FOREIGN KEY ([configurazione_id]) REFERENCES [Prenotazioni]([configurazione_id]), 
+    CONSTRAINT [Ospiti_id] FOREIGN KEY ([Ospiti_id]) REFERENCES [Prenotazioni]([Ospiti_id]), 
+    CONSTRAINT [Calendario_id] FOREIGN KEY ([Calendario_id]) REFERENCES [Prenotazioni]([Calendario_id])
+)
+CREATE TABLE [dbo].[Stanze]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [N_stanza] INT NOT NULL, 
+    [piano] INT NOT NULL, 
+    [N_letti] INT NOT NULL
+)
+CREATE TABLE [dbo].[Configurazione]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [titolo] VARCHAR(50) NOT NULL, 
+    [Descrizione] VARCHAR(100) NULL, 
+    [Tipo_configurazione] VARCHAR(50) NOT NULL
+)
